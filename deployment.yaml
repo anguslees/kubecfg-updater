@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: kube-system
+  labels:
+    name: kubecfg-updater
+  name: kubecfg-updater
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: kubecfg-updater
+    spec:
+      containers:
+        name: kubecfg-updater
+        image: anguslees/kubecfg-updater
+        env:
+          - name: GIT_REPO
+            value: git@github.com:yourcompany/kube-manifests.git
